@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${SPRING_DATASOURCE_URL}?sslmode=require&connectTimeout=30&socketTimeout=30&tcpKeepAlive=true&reWriteBatchedInserts=true
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://dpg-d15agph5pdvs73f39odg-a.frankfurt-postgres.render.com:5432/localnews?user=localnews&password=JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC&sslmode=require&connectTimeout=30&socketTimeout=30&tcpKeepAlive=true&reWriteBatchedInserts=true
+    username: localnews
+    password: JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 5
