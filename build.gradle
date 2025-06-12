@@ -34,8 +34,17 @@ dependencies {
 
 }
 
-
-
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Add this for proper JAR creation
+bootJar {
+	enabled = true
+	archiveClassifier = ''
+}
+
+jar {
+	enabled = true
+	archiveClassifier = 'original'
 }
