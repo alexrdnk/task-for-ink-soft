@@ -1,4 +1,9 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine as builder
+WORKDIR /app
+COPY . .
+RUN ./gradlew build -x test
+
+FROM eclipse-temurin:17-jre-alpine
 VOLUME /tmp
-COPY build/libs/*.jar app.jar
+COPY --from=builder /app/build/libs/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=prod"] 
