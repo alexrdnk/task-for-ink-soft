@@ -7,4 +7,5 @@ RUN ./gradlew build -x test
 FROM eclipse-temurin:17-jre-alpine
 VOLUME /tmp
 COPY --from=builder /app/build/libs/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=prod"] 
+ENV JAVA_OPTS="-Xmx512m -Xms256m -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app.jar --spring.profiles.active=prod"] 

@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://dpg-d15agph5pdvs73f39odg-a.frankfurt-postgres.render.com:5432/localnews?user=localnews&password=JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC
+    url: jdbc:postgresql://dpg-d15agph5pdvs73f39odg-a.frankfurt-postgres.render.com:5432/localnews?user=localnews&password=JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC?sslmode=require
     username: postgres
     password: JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC
   jpa:
