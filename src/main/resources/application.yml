@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/news
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  webclient:
+    base-url: https://newsapi.org
+
+logging:
+  level:
+    com.zaxxer.hikari: DEBUG
+    org.springframework.jdbc.datasource: DEBUG
+
+newsapi:
+  base-url: https://newsapi.org
+  key: ${NEWSAPI_KEY}
+
+openai:
+  api-key: ${OPENAI_API_KEY}
+
+
