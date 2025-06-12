@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://dpg-d15agph5pdvs73f39odg-a.frankfurt-postgres.render.com:5432/localnews?sslmode=require&connectTimeout=30&socketTimeout=30&tcpKeepAlive=true&reWriteBatchedInserts=true&prepareThreshold=0&useServerPrepStmts=false
-    username: localnews
-    password: JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://dpg-d15agph5pdvs73f39odg-a.frankfurt-postgres.render.com:5432/localnews?sslmode=require}
+    username: ${SPRING_DATASOURCE_USERNAME:localnews}
+    password: ${SPRING_DATASOURCE_PASSWORD:JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC}
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 5
@@ -14,6 +14,8 @@ spring:
       validation-timeout: 5000
       keepalive-time: 30000
       leak-detection-threshold: 60000
+      auto-commit: true
+      initialization-fail-timeout: 0
   jpa:
     hibernate:
       ddl-auto: update
@@ -25,6 +27,8 @@ spring:
         jdbc:
           batch_size: 50
           batch_versioned_data: true
+        format_sql: true
+        generate_statistics: true
   webclient:
     base-url: https://newsapi.org
   retry:
@@ -54,6 +58,15 @@ logging:
     org.springframework.retry: DEBUG
     org.postgresql: DEBUG
     org.hibernate.engine.jdbc: DEBUG
+    org.hibernate.engine.transaction: DEBUG
+    org.hibernate.engine.jdbc.env: DEBUG
+    org.hibernate.engine.jdbc.spi: DEBUG
+    org.hibernate.engine.jdbc.batch: DEBUG
+    org.hibernate.engine.jdbc.connections: DEBUG
+    org.hibernate.engine.jdbc.dialect: DEBUG
+    org.hibernate.engine.jdbc.env.spi: DEBUG
+    org.hibernate.engine.jdbc.env.internal: DEBUG
+    org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator: DEBUG
 
 server:
   port: ${PORT:8080}
