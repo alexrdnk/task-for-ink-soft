@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/news
+    url: jdbc:postgresql://dpg-d15agph5pdvs73f39odg-a.frankfurt-postgres.render.com:5432/localnews?user=localnews&password=JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC
     username: postgres
     password: postgres
   jpa:
@@ -11,6 +11,14 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  webclient:
+    base-url: https://newsapi.org
+
+logging:
+  level:
+    root: DEBUG
+    com.zaxxer.hikari: DEBUG
+    org.springframework.jdbc.datasource: DEBUG
 
 newsapi:
   base-url: https://newsapi.org
