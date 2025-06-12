@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${SPRING_DATASOURCE_URL}
+    url: ${SPRING_DATASOURCE_URL}?sslmode=require&connectTimeout=30&socketTimeout=30&tcpKeepAlive=true&reWriteBatchedInserts=true
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     hikari:
@@ -12,6 +12,8 @@ spring:
       max-lifetime: 1200000
       connection-test-query: SELECT 1
       validation-timeout: 5000
+      keepalive-time: 30000
+      leak-detection-threshold: 60000
   jpa:
     hibernate:
       ddl-auto: update
@@ -39,6 +41,7 @@ logging:
     org.hibernate.SQL: DEBUG
     org.springframework.retry: DEBUG
     org.postgresql: DEBUG
+    org.hibernate.engine.jdbc: DEBUG
 
 server:
   port: ${PORT:8080}
@@ -47,6 +50,13 @@ server:
     connection-timeout: 20000
     max-threads: 200
     min-spare-threads: 10
+    threads:
+      max: 200
+      min-spare: 10
+  shutdown: graceful
+  error:
+    include-message: always
+    include-binding-errors: always
 
 newsapi:
   base-url: https://newsapi.org
