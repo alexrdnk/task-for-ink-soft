@@ -33,6 +33,18 @@ spring:
     multiplier: 2.0
     max-interval: 10000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+  server:
+    port: 8080
+    base-path: /actuator
+
 logging:
   level:
     root: INFO
