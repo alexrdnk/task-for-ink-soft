@@ -1,24 +1,32 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://dpg-d15agph5pdvs73f39odg-a.frankfurt-postgres.render.com:5432/localnews?user=localnews&password=JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC
-    username: localnews
-    password: JF0ju86oSqedZ8S0AiTTkgnXA0kIyNKC
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 300000
+      max-lifetime: 1200000
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        connection:
+          provider_disables_autocommit: true
   webclient:
     base-url: https://newsapi.org
 
 logging:
   level:
     root: INFO
-    com.zaxxer.hikari: INFO
-    org.springframework.jdbc.datasource: INFO
+    com.zaxxer.hikari: DEBUG
+    org.springframework.jdbc.datasource: DEBUG
+    org.hibernate.SQL: DEBUG
 
 server:
   port: ${PORT:8080}
